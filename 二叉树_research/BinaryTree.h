@@ -11,11 +11,10 @@ class BinaryTree {
 private:
 	struct Node//二叉树的结点类
 	{
-	private:
 		Node* left, * right;
 		Type data;
 
-		Node() :left(NULL), right(NULL) {}
+		Node() :left(NULL), right(NULL) { cout << "调用了Node的构造函数" << endl; }
 		/*
 		* 初始化结点的构造函数:
 		这个构造函数的参数表是空的，所以可以不写函数体直接在参数表里把参数置为NULL
@@ -25,7 +24,7 @@ private:
 		初始化结点的构造函数:
 		这个构造函数的参数表不是空的，直接在参数表里把参数初始化为形参的值
 		*/
-		~Node() {}	//析构函数
+		~Node() { cout << "调用了Node的析构函数" << endl; }	//析构函数
 	};
 	
 	
@@ -34,10 +33,14 @@ public:
 
 	Node* root;	//二叉树的根节点
 
-	BinaryTree() :root(NULL) {	}	//	构造函数用来初始化
+	BinaryTree() :root(NULL) { cout << "调用了BinaryTree的构造函数" << endl; }	//	构造函数用来初始化
 	BinaryTree(const Type& value) { root = new Node(value); }
 
-	~BinaryTree() { clear(); }
+	~BinaryTree() 
+	{ 
+		cout << "调用了BinaryTree的析构函数" << endl; 
+		clear(); 
+	}
 
 	Type getRoot()const { return root->data; }
 	Type getLeft()const { return root->left; }

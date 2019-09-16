@@ -112,6 +112,12 @@ TriTree CreatBiTree_3(char *defBT, int &i)
 	return T;
 }
 
+Status Visit(TElemType e)
+{
+	printf("%c", e);
+	return OK;
+}
+
 Status PreOrderTraverse(BiTree T, Status(*Visit)(TElemType e))
 //visit是对结点操作的应用函数，
 //先序遍历，对每个节点调用一次应用函数
@@ -255,8 +261,6 @@ void PostOrder(BiTree T, void(*visit)(TElemType))
 	InitStack(S, 10, 4);
 
 	SElemType e, a, b;
-	//S.elem[S.top - 1].tag = 0;
-
 	do
 	{
 		while (T)
@@ -271,7 +275,6 @@ void PostOrder(BiTree T, void(*visit)(TElemType))
 		{
 			//GetTop(S, e);
 			Pop(S, e);
-
 			if (e.tag == 0)
 			{
 				e.tag = 1;

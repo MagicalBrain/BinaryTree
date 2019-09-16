@@ -3,6 +3,11 @@
 
 using namespace std;
 
+void TestBinaryTree()
+{
+	BinaryTree<char> S;
+}
+
 Status printelem(TElemType e)
 {
 	printf("%c", e);
@@ -105,4 +110,69 @@ void Testfunc03()
 
 	cout << endl;
 	PostOrderTraversal(T, printelem);	//后序遍历的非递归实现
+}
+
+void Testfunc0401()
+//
+{
+	BiTree T;
+	InitBiTree(T);
+
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	char* def = "WRKG##L###YX###";
+
+	int i = 0, num = 0;
+	T = CreatBiTree(def, i);
+
+	TBLevelorder(T);
+}
+
+void Testfunc0402()
+//
+{
+	BiTree T;
+	InitBiTree(T);
+
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	char* def = "WRKG##L###YX###";
+
+	int i = 0, num = 0;
+	T = CreatBiTree(def, i);
+
+	BTLevelorder(T);
+}
+
+void Testfunc05()
+{
+	BiTree T;
+	InitBiTree(T);
+
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	char* def = "WRKG##L###YX###";
+
+	int i = 0, num = 0;
+	T = CreatBiTree(def, i);
+
+	cout << "层次遍历：";
+	TBLevelorder(T);
+	cout << endl;
+	cout << "中序遍历：";
+	InOrderTraversal(T, printelem);	//中序遍历的非递归实现
+	cout << endl;
+	cout << "先序遍历：";
+	PreOrderTraverse(T, printelem);
+	cout << endl;
+	cout << func05(T) << endl;
 }
