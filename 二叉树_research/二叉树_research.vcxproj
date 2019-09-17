@@ -152,6 +152,7 @@
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BiTree.h" />
     <ClInclude Include="Function.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="Sequence.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="TestFunction.h" />

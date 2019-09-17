@@ -12,6 +12,8 @@ using namespace std;
 int main()
 {
 	//TestCreatBiTree();
+	//TestBinaryTree();
+	TestStack();
 
 	//Testfunc01();//测试非递归中序遍历函数
 	//Testfunc02();//测试非递归先序遍历函数

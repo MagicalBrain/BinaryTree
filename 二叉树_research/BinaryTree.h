@@ -1,5 +1,10 @@
 #pragma once
 #include <iostream>
+#include "Queue.h"
+
+/*
+* 以下代码来自上海交大版的数据结构
+*/
 
 using namespace std;
 
@@ -93,7 +98,7 @@ public:
 		}
 	}
 
-	void postOrder()const 
+	void postOrder() const 
 	{
 		if (root != NULL)
 		{
@@ -102,7 +107,7 @@ public:
 		}
 	}
 
-	void midtOrder()const
+	void midOrder() const
 	{
 		if (root != NULL)
 		{
@@ -160,7 +165,7 @@ private:
 		}
 	}
 
-	void midtOrder(Node* t)const
+	void midOrder(Node* t)const
 	{
 		if (t != NULL)
 		{
@@ -175,5 +180,26 @@ private:
 template<class Type>
 void BinaryTree<Type>::CreatTree(Type flag)
 {
-	;
+	linkQueue<Node*>que;
+	Node* tmp;
+	Type x, ldata, rdata;
+
+	//
+	cout << "输入根节点" << endl;
+	cin >> x;
+
+	root = new Node(x);
+	que.EnQueue(root);
+
+	while (!que.isEmpty())
+	{
+		tmp = que.DeQueue();
+		cout << "输入" << tmp->data << "的两个儿子（" << flag << "表示空节点） ：";
+		cin >> ldata >> rdata;
+		if (ldata != flag)
+			que.EnQueue(tmp->left = new Node(ldata));
+		if (rdata != flag)
+			que.EnQueue(tmp->left = new Node(rdata));
+	}
+	cout << "creat completed!" << endl;
 }

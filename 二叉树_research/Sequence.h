@@ -19,19 +19,19 @@ typedef struct
 	QElemType* elem;
 	int length;
 	int rear, front;
-}Queue;
+}queue;
 
 
 //循环队列的操作
 ////初始化
-void InitQueue(Queue &Q,int len)
+void InitQueue(queue &Q,int len)
 {
 	Q.elem = (QElemType*)malloc(len * sizeof(QElemType));
 	Q.rear = Q.front = 0;
 }
 
 //判断队列空
-bool isEmpty(Queue Q)
+bool isEmpty(queue Q)
 {
 	if (Q.rear == Q.front)
 		return true;
@@ -39,7 +39,7 @@ bool isEmpty(Queue Q)
 		return false;
 }
 
-bool EnQueue(Queue *q,QElemType x)
+bool EnQueue(queue *q,QElemType x)
 {
 	//入队算法
 
@@ -51,7 +51,7 @@ bool EnQueue(Queue *q,QElemType x)
 }
 
 //出队算法
-bool DeQueue(Queue &q, QElemType & x)
+bool DeQueue(queue &q, QElemType & x)
 {
 	if (q.rear == q.front)
 		return false;

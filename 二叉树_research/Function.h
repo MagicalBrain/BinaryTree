@@ -3,6 +3,7 @@
 #include "Stack.h"
 #include "BiTree.h"
 #include "Sequence.h"
+#include "Queue.h"
 
 int BiTreeDepth(BiTree T)
 {
@@ -22,7 +23,7 @@ void InOrderTraversal(BiTree BT,Status(*Visit)(TElemType e))
 //二叉树的中序遍历的非递归实现
 {
 	BiTree T = BT;
-	Stack S;
+	stack S;
 	InitStack(S, 10, 4);
 	SElemType e;
 	/*创建并初始化堆栈S*/
@@ -49,7 +50,7 @@ Status PreOrderTraversal(BiTree BT, Status(*Visit)(TElemType e))
 //调用失败就整个函数失败
 {
 	BiTree T = BT;
-	Stack S;
+	stack S;
 	InitStack(S, 10, 4);
 	SElemType e;
 	/*创建并初始化堆栈S*/
@@ -83,7 +84,7 @@ Status PostOrderTraversal(BiTree BT, Status(*Visit)(TElemType e))
 {
 	BiTree T = BT, r = NULL;
 	/*r：用来存最近访问的结点，初始为NULL*/
-	Stack S;
+	stack S;
 	InitStack(S, 10, 4);
 	SElemType e;
 	/*创建并初始化堆栈S*/
@@ -133,7 +134,7 @@ bool TBLevelorder(BiTree BT)
 * 得利用队列
 */
 {
-	Queue q,*q0;
+	queue q,*q0;
 	InitQueue(q,10);
 	q0 = &q;
 
@@ -146,70 +147,15 @@ bool TBLevelorder(BiTree BT)
 		if (p->lchild != NULL)
 		{
 			EnQueue(q0, p->lchild);
-			//TBLevelorder(p->lchild);
 		}
 		if (p->rchild != NULL)
 		{
 			EnQueue(q0, p->rchild);
-			//TBLevelorder(p->rchild);
 		}
 	}
 
 	return true;
 }
-
-/*
-Stack S1,S2;
-	BiTree T = BT, r = NULL;
-	InitStack(S1, 10, 4);
-	InitStack(S2, 10, 4);
-	SElemType e,t;
-	if (NULL == T)
-		return false;
-
-	e.ptr = T;
-	Push(S1, e);
-	//Push(S2, e);
-	T = T->lchild;
-	while (e.ptr && !StackEmpty(S1))
-	{
-		if (e.ptr)
-		{
-			t.ptr = e.ptr;
-			Push(S2, e);
-			if (t.ptr->lchild)
-			{
-				T = T->lchild;
-				e.ptr = T;
-				Push(S1, e);
-			}
-
-			if (t.ptr->rchild && t.ptr->rchild != r)
-			{
-				T = T->rchild;
-				e.ptr = T;
-				Push(S1, e);
-			}
-
-		}
-		else
-			{
-				Pop(S2, e);
-				e.ptr = e.ptr->rchild;
-			}
-			e.ptr = e.ptr->lchild;
-
-	}
-
-	while (!StackEmpty(S1))
-	{
-		Pop(S1, e);
-		cout << e.ptr->data << " ,";
-	}
-	cout << endl;
-
-	return true;
-*/
 
 bool BTLevelorder(BiTree BT)
 /*
@@ -217,10 +163,10 @@ bool BTLevelorder(BiTree BT)
 * 得利用栈
 */
 {
-	Queue q, * q0;
+	queue q, * q0;
 	InitQueue(q, 10);
 	q0 = &q;
-	Stack S;
+	stack S;
 	InitStack(S, 10, 5);
 	SElemType e;
 
@@ -251,41 +197,112 @@ bool BTLevelorder(BiTree BT)
 	return true;
 }
 
-
+/*
 int func05(BiTree BT)
 {
-	if (BT == NULL)
-		return -1;
+	//seqQueue<BiTree>q(10);
+	BiTree q[100];
+	int front = -1, rear =-1;
+	int level = 0, last = 0;
 
-	int re = 0;
-
-	Queue q, * q0;
-	InitQueue(q, 10);
-	q0 = &q;
-	Stack S;
-	InitStack(S, 10, 5);
-	SElemType e;
-
-	BiTree p;
-	EnQueue(q0, BT);
-	while (!isEmpty(q))
+	BiTree p = BT;
+	q[++rear] = p;
+	while (front<rear)
 	{
-		DeQueue(q, p);
+		p = q[++front];;
 		//Visit(p->data);
-		e.ptr = p;
+		//e.ptr = p;
 		//Push(S, e);
-		re++;
 		if (p->lchild != NULL)
 		{
-			EnQueue(q0, p->lchild);
+			q[++rear] = p->lchild;
 		}
 		if (p->rchild != NULL)
 		{
-			EnQueue(q0, p->rchild);
+			q[++rear] = p->rchild;
+		}
+		if (front == last)
+		{
+			level++;
+			last = rear;
 		}
 	}
 
-	return re;
+	return level;
+}
+*/
+int func05(BiTree BT)
+{
+	BiTree q[100];
+	int front = -1, rear =0;
+	int level = 0, last = 0;
+
+	BiTree p = BT;
+	q[rear++] = p;
+	while (front<rear-1)
+	{
+		p = q[++front];;
+		//Visit(p->data);
+		//e.ptr = p;
+		//Push(S, e);
+		if (p->lchild != NULL)
+		{
+			q[rear++] = p->lchild;
+		}
+		if (p->rchild != NULL)
+		{
+			q[rear++] = p->rchild;
+		}
+		if (front == last)
+		{
+			level++;
+			last = rear-1;
+		}
+	}
+	
+	return level;
+}
+
+int func0501(BiTree BT,int n)
+//返回第i层的结点个数
+{
+	if (!BT)
+		return 0;
+
+	int num = 0;
+
+	BiTree q[100];
+	int front = -1, rear = 0;
+	int level = 0, last = 0;
+
+	BiTree p = BT;
+	q[rear++] = p;
+	while (front < rear - 1)
+	{
+		p = q[++front];
+		num++;
+		if (p->lchild != NULL)
+		{
+			q[rear++] = p->lchild;
+		}
+		if (p->rchild != NULL)
+		{
+			q[rear++] = p->rchild;
+		}
+		if (front == last)
+		{
+			
+			level++;
+			if (level == n)
+			{
+				return num;
+			}
+			num = 0;
+			last = rear - 1;
+		}
+	}
+
+	return -1;
 }
 
 Status CompleteBiTree(BiTree T)

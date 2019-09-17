@@ -25,7 +25,7 @@ typedef struct
 	int top;
 	int size;
 	int increment;
-}Stack;
+}stack;
 
 
 
@@ -33,7 +33,7 @@ typedef struct
 //Status InitStack(Stack &S);
 
 //初始化栈
-Status InitStack(Stack &S, int size, int inc)
+Status InitStack(stack &S, int size, int inc)
 {
 	S.elem = (SElemType*)malloc(size * sizeof(SElemType));
 	if (NULL == S.elem) return OVERFLOW;
@@ -46,7 +46,7 @@ Status InitStack(Stack &S, int size, int inc)
 //Status StackEmpty(Stack S);
 
 //判空函数
-Status StackEmpty(Stack S)
+Status StackEmpty(stack S)
 {
 	if (S.top == 0)
 		return OK;
@@ -57,7 +57,7 @@ Status StackEmpty(Stack S)
 //Status Push(Stack &S, SElemType e);
 
 //入栈
-Status Push(Stack &S, SElemType e)
+Status Push(stack &S, SElemType e)
 {
 	//判断栈是否为满
 	if (S.top >= S.size) //如果top变量为指针则为（S.top-S.elem>=S.size）
@@ -76,7 +76,7 @@ Status Push(Stack &S, SElemType e)
 //Status Pop(Stack &S, SElemType &e);
 
 //出栈
-Status Pop(Stack &S, SElemType &e)
+Status Pop(stack &S, SElemType &e)
 {
 	//判断栈是否为空
 	if (S.top == 0) //如果top变量为指针则为（S.top==S.elem）
@@ -86,7 +86,7 @@ Status Pop(Stack &S, SElemType &e)
 	return OK;
 }
 
-Status GetTop(Stack S, SElemType &e)
+Status GetTop(stack S, SElemType &e)
 {
 	if (StackEmpty(S))
 		return ERROR;
@@ -95,4 +95,73 @@ Status GetTop(Stack S, SElemType &e)
 		e = S.elem[S.top - 1];
 		return OK;
 	}
+}
+
+/***********************************************************/
+
+template<class Type>
+class Stack {
+public:
+	virtual bool isEmpty()const = 0;
+	virtual void push(const Type& x) = 0;
+	virtual Type pop() = 0;
+	virtual Type GetTop()const = 0;
+	virtual ~Stack(){}
+};
+
+template<class Type>
+class seqStack :public Stack<Type>
+{
+private:
+	Type* elem;
+	int top;
+	int maxsize;
+
+	void doubleSpace();
+
+public:
+	seqStack(int initsize = 10) {
+		elem = new Type[initsize];
+		maxsize = initsize;
+		top = -1;
+	}
+
+	~seqStack() {
+		delete[] elem;
+	}
+
+	bool isEmpty()const
+	{
+		return top == -1;
+	}
+
+	void push(const Type& x) {
+		if (top == maxsize - 1)
+			doubleSpace();
+		elem[++top] = x;
+
+	}
+
+	Type pop() {
+		return elem[top--];
+	}
+
+	Type GetTop() const
+	{
+		return elem[top];
+	}
+};
+
+
+template<class Type>
+void seqStack<Type>::doubleSpace() {
+	Type* tmp = elem;
+	elem = new Type[2 * maxsize];
+
+	for (int i = 1; i < maxsize; ++i)
+	{
+		elem[i] = tmp[i];
+	}
+	maxsize *= 2;
+	delete[]tmp;
 }

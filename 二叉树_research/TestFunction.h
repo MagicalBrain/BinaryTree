@@ -3,9 +3,33 @@
 
 using namespace std;
 
+void TestStack()
+{
+	seqStack<int> S(20);
+}
+
 void TestBinaryTree()
 {
-	BinaryTree<char> S;
+	BinaryTree<char> tree,tree1('M'),tree2;
+
+	tree.CreatTree('@');
+
+	cout << "高度为：" << tree.height() << endl;
+	cout << "规模为：" << tree.size() << endl;
+
+	tree.preOrder();
+	tree.midOrder();
+	tree.postOrder();
+
+	tree2.makeTree('Y', tree, tree1);
+	cout << endl;
+
+	cout << "高度为：" << tree2.height() << endl;
+	cout << "规模为：" << tree2.size() << endl;
+
+	tree2.preOrder();
+	tree2.midOrder();
+	tree2.postOrder();
 }
 
 Status printelem(TElemType e)
@@ -160,7 +184,7 @@ void Testfunc05()
 	//char* def = "ABD##E##C##";
 	//char* def = "CG#J#T#V###";
 	//char* def = "C#GJTV#####";
-	char* def = "WRKG##L###YX###";
+	char* def = "WRKG##L###YX##Z##";
 
 	int i = 0, num = 0;
 	T = CreatBiTree(def, i);
@@ -174,5 +198,6 @@ void Testfunc05()
 	cout << "先序遍历：";
 	PreOrderTraverse(T, printelem);
 	cout << endl;
-	cout << func05(T) << endl;
+	cout << func0501(T,5) << endl;
+	cout << Depthx(T, T->data) << endl;
 }

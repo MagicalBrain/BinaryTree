@@ -257,7 +257,7 @@ void PostOrder(BiTree T, void(*visit)(TElemType))
 	if (T == NULL)
 		return;
 
-	Stack S;
+	stack S;
 	InitStack(S, 10, 4);
 
 	SElemType e, a, b;
