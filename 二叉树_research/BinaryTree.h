@@ -48,8 +48,8 @@ public:
 	}
 
 	Type getRoot()const { return root->data; }
-	Type getLeft()const { return root->left; }
-	Type getRight() const { return root->right; }
+	Node getLeft()const { return root->left; }
+	Node getRight() const { return root->right; }
 
 	void makeTree(const Type& x, BinaryTree& lt, BinaryTree& rt)
 	{

@@ -1,0 +1,8 @@
+digraph G{
+W->R;
+W->Y;
+R->K;
+K->G;
+K->L;
+Y->X;
+}

@@ -1,7 +1,62 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 
 using namespace std;
+
+void fprint_tree0(BiTree t, ofstream *Tree)
+{
+	if (t != NULL)
+	{
+		if (t->lchild != NULL)
+			*Tree << t->data << "->" << t->lchild->data << ";" << endl;
+		if (t->rchild != NULL)
+			*Tree << t->data << "->" << t->rchild->data << ";" << endl;
+
+		fprint_tree0(t->lchild,Tree);
+
+		fprint_tree0(t->rchild,Tree);
+	}
+}
+
+void fprint_tree(BiTree t) {
+	ofstream Tree;
+	Tree.open("二叉树.dot");
+	Tree << "digraph G{" << endl;
+	
+	fprint_tree0(t, &Tree);
+	//rbtree_fprint_tree(t->left, fp);
+	//rbtree_fprint_tree(t->right, fp);
+	Tree << "}" << endl;
+	Tree.close();
+	//if (rb_nil == t) return;
+	
+}
+
+/*
+template<class Type>
+void fprint_tree(BinaryTree<Type> t) {
+
+	ofstream Tree;
+	Tree.open("二叉树.txt");
+	Tree << "digraph G{" << endl;
+	if (t.getLeft() != NULL) {//root
+		fprint_tree(t.getLeft());
+		Tree << t.getRoot() << "->" << t.getLeft().data << ";" << endl;
+	}
+	if (t.getRight() != NULL) {
+		fprint_tree(t.getRight());
+		Tree << t.getRoot() << "->" << t.getRight().data << ";" << endl;
+	}
+	//rbtree_fprint_tree(t->left, fp);
+	//rbtree_fprint_tree(t->right, fp);
+	Tree << "}" << endl;
+	Tree.close();
+	//if (rb_nil == t) return;
+
+}
+*/
+
 
 void TestStack()
 {
@@ -30,6 +85,8 @@ void TestBinaryTree()
 	tree2.preOrder();
 	tree2.midOrder();
 	tree2.postOrder();
+
+	//fprint_tree(tree);
 }
 
 Status printelem(TElemType e)
@@ -59,6 +116,7 @@ void TestCreatBiTree()	//测试树的Creat函数
 	//构造一个二叉树
 	p = CreatBiTree(def, i);
 
+	fprint_tree(p);
 	PreOrderTraverse(p, printelem);
 	cout << endl;
 
@@ -72,6 +130,7 @@ void TestCreatBiTree()	//测试树的Creat函数
 	PreOrderTraverse(pp, printelem);
 	cout << endl;
 
+	
 	//cout << PreOrderTraverse(p, printelem) << endl;
 
 }
