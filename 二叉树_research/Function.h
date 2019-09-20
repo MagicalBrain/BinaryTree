@@ -304,6 +304,55 @@ int func0501(BiTree BT,int n)
 
 	return -1;
 }
+BiTree CreateBinaryTree_In_PreOreder(char A[],char B[],int n)
+/*根据中序遍历序列，先序遍历序列构造二叉树*/
+{
+	if (n <= 0)
+		return NULL;
+	BiTree T = (BiTree)malloc(sizeof(BiTNode));
+	BiTree p = (BiTree)malloc(sizeof(BiTNode));
+
+	int num = 0,flag=0;
+	p = T;
+	p->data = A[num];
+	while (num < n)
+	{
+		//p->data = A[num];
+		for (int i = 0; i < n; i++)
+		{
+			if (B[i] == p->data)
+				flag = i;
+		}
+		if (flag == n - 1)
+		{
+			p->rchild == NULL;
+			BiTree q = (BiTree)malloc(sizeof(BiTNode));
+			q->data = A[++num];
+			p->lchild = q;
+			p = p->lchild;
+		}
+		else if (flag == 0)
+		{
+			p->lchild == NULL;
+			BiTree q = (BiTree)malloc(sizeof(BiTNode));
+			q->data = A[++num];
+			p->rchild = q;
+			p = p->rchild;
+		}
+		else
+		{
+			BiTree q1 = (BiTree)malloc(sizeof(BiTNode));
+			q1->data = A[++num];
+			p->lchild == q1;
+			BiTree q2 = (BiTree)malloc(sizeof(BiTNode));
+			q2->data = A[++num];
+			p->rchild = q2;
+		}
+	}
+	
+
+	return T;
+}
 
 Status CompleteBiTree(BiTree T)
 /* 判别二叉树T是否为完全二叉树 */

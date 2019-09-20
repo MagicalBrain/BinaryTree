@@ -11,7 +11,7 @@ using namespace std;
 
 int main()
 {
-	TestCreatBiTree();
+	//TestCreatBiTree();
 	//TestBinaryTree();
 	//TestStack();
 
@@ -22,6 +22,7 @@ int main()
 	//cout << endl;
 	//Testfunc0402();//测试层次遍历（自下往上，自右向左）
 	//Testfunc05();
+	Testfunc06();
 
 	return 0;
 }

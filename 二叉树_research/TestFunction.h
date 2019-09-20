@@ -105,10 +105,10 @@ void TestCreatBiTree()	//测试树的Creat函数
 {
 	//char* def = "MJG####";
 	//char* def = "A#B#CD###";
-	//char* def = "ABD##E##C##";
+	char* def = "ABD##E##C##";
 	//char* def = "CG#J#T#V###";
 	//char* def = "C#GJTV#####";
-	char* def = "WRKG##L###YX###";
+	//char* def = "WRKG##L###YX###";
 	int i = 0, num = 0;
 	BiTree p, pp;
 	TElemType x = 'Y';
@@ -247,6 +247,7 @@ void Testfunc05()
 
 	int i = 0, num = 0;
 	T = CreatBiTree(def, i);
+	fprint_tree(T);
 
 	cout << "层次遍历：";
 	TBLevelorder(T);
@@ -259,4 +260,18 @@ void Testfunc05()
 	cout << endl;
 	cout << func0501(T,5) << endl;
 	cout << Depthx(T, T->data) << endl;
+}
+
+void Testfunc06()
+{
+	int num = 3;
+	char A[] = "ABC";
+	char B[] = "BAC";
+
+	BiTree T = CreateBinaryTree_In_PreOreder(A, B, num);
+
+	InOrderTraversal(T, printelem);	//中序遍历的非递归实现
+	cout << endl;
+	cout << "先序遍历：";
+	PreOrderTraverse(T, printelem);
 }
