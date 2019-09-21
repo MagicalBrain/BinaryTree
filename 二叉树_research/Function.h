@@ -304,58 +304,92 @@ int func0501(BiTree BT,int n)
 
 	return -1;
 }
-BiTree CreateBinaryTree_In_PreOreder(char A[],char B[],int n)
+BiTree CreateBinaryTree_In_PreOreder(char A[],char B[],int a1,int a2,int b1,int b2)
 /*根据中序遍历序列，先序遍历序列构造二叉树*/
 {
-	if (n <= 0)
-		return NULL;
+	//int a1 = 0,a2=
+	int flag = 0, Lleft = 0, Lright = 0;
 	BiTree T = (BiTree)malloc(sizeof(BiTNode));
-	BiTree p = (BiTree)malloc(sizeof(BiTNode));
-
-	int num = 0,flag=0;
-	p = T;
-	p->data = A[num];
-	while (num < n)
-	{
-		//p->data = A[num];
-		for (int i = 0; i < n; i++)
-		{
-			if (B[i] == p->data)
-				flag = i;
-		}
-		if (flag == n - 1)
-		{
-			p->rchild == NULL;
-			BiTree q = (BiTree)malloc(sizeof(BiTNode));
-			q->data = A[++num];
-			p->lchild = q;
-			p = p->lchild;
-		}
-		else if (flag == 0)
-		{
-			p->lchild == NULL;
-			BiTree q = (BiTree)malloc(sizeof(BiTNode));
-			q->data = A[++num];
-			p->rchild = q;
-			p = p->rchild;
-		}
-		else
-		{
-			BiTree q1 = (BiTree)malloc(sizeof(BiTNode));
-			q1->data = A[++num];
-			p->lchild == q1;
-			BiTree q2 = (BiTree)malloc(sizeof(BiTNode));
-			q2->data = A[++num];
-			p->rchild = q2;
-		}
-	}
-	
-
+	//BiTree p = (BiTree)malloc(sizeof(BiTNode));
+	T->data = A[a1];
+	int i;
+	for (i = b1; B[i] != T->data; i++)
+		;
+	flag = i;
+	Lleft = flag-b1;
+	Lright = b2 - flag;
+	if (Lleft)
+		T->lchild = CreateBinaryTree_In_PreOreder(A, B, a1+1, a1 + Lleft,b1,b1+Lleft-1 );
+	else
+		T->lchild = NULL;
+	if (Lright)
+		T->rchild = CreateBinaryTree_In_PreOreder(A, B, a2-Lright+1, a2, b2-Lright+1, b2);
+	else
+		T->rchild = NULL;
 	return T;
 }
 
-Status CompleteBiTree(BiTree T)
+bool isCompleteBiTree(BiTree T)
 /* 判别二叉树T是否为完全二叉树 */
 {
-	return 0;
+	if (!T)
+		return false;
+
+	int num = 0;
+
+	BiTree q[100];
+	int front = -1, rear = 0;
+	int level = 0, last = 0;
+
+	BiTree p = T;
+	q[rear++] = p;
+	//进队
+	while (front < rear - 1 )
+	{
+		p = q[++front];
+		//出队
+		if (p == NULL)
+			break;
+		if (p->lchild != NULL)
+		{
+			q[rear++] = p->lchild;
+		}
+		else
+			q[rear++] = NULL;
+		if (p->rchild != NULL)
+		{
+			q[rear++] = p->rchild;
+		}
+		else
+			q[rear++] = NULL;
+	}
+
+	for (int i = front; i < rear; i++)
+	{
+		if (q[i] == NULL)
+		{
+			for (int j = i+1; j < rear; j++)
+			{
+				if (q[j] != NULL)
+					return false;
+			}
+		}
+	}
+	return true;
+}
+
+int func08(BiTree T)
+/*计算二叉树中有多少个度为2的结点*/
+{
+	if (T != NULL)
+	{
+		if (T->lchild != NULL && T->rchild != NULL)
+			return 1+func08(T->lchild)+func08(T->rchild);
+		if (T->lchild != NULL)
+			return func08(T->lchild);
+		if (T->rchild != NULL)
+			return func08(T->rchild);
+	}
+	
+		return 0;
 }

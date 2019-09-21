@@ -22,7 +22,9 @@ int main()
 	//cout << endl;
 	//Testfunc0402();//测试层次遍历（自下往上，自右向左）
 	//Testfunc05();
-	Testfunc06();
+	//Testfunc06();
+	//Testfunc07();
+	Testfunc08();
 
 	return 0;
 }

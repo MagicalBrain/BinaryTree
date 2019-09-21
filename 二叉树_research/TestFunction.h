@@ -266,12 +266,61 @@ void Testfunc06()
 {
 	int num = 3;
 	char A[] = "ABC";
-	char B[] = "BAC";
+	char B[] = "BCA";
 
-	BiTree T = CreateBinaryTree_In_PreOreder(A, B, num);
+	BiTree T = CreateBinaryTree_In_PreOreder(A, B, 0,num-1,0,num-1);
 
 	InOrderTraversal(T, printelem);	//中序遍历的非递归实现
 	cout << endl;
 	cout << "先序遍历：";
 	PreOrderTraverse(T, printelem);
+}
+
+void Testfunc07()
+{
+	char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+
+	cout << "层次遍历：";
+	TBLevelorder(T);
+	cout << endl;
+	cout << "中序遍历：";
+	InOrderTraversal(T, printelem);
+	fprint_tree(T);
+
+	cout << endl;
+	if (isCompleteBiTree(T))
+		cout << "是完全二叉树！" << endl;
+	else
+		cout << "不是完全二叉树！" << endl;
+}
+
+void Testfunc08()
+{
+	char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+
+	fprint_tree(T);
+
+	cout << "度数为2的结点："<<func08(T) << endl;
 }
