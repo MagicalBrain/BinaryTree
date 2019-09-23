@@ -29,8 +29,17 @@ void fprint_tree(BiTree t) {
 	//rbtree_fprint_tree(t->right, fp);
 	Tree << "}" << endl;
 	Tree.close();
-	//if (rb_nil == t) return;
-	
+	//if (rb_nil == t) return;	
+}
+
+void fprint_tree(BiTree t,char str[]) {
+	ofstream Tree;
+	Tree.open(str);
+	Tree << "digraph G{" << endl;
+
+	fprint_tree0(t, &Tree);
+		Tree << "}" << endl;
+	Tree.close();
 }
 
 /*
@@ -323,4 +332,54 @@ void Testfunc08()
 	fprint_tree(T);
 
 	cout << "度数为2的结点："<<func08(T) << endl;
+}
+
+void Testfunc09()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+	char str1[100] = "二叉树func0901.dot";
+	char str2[100] = "二叉树func0902.dot";
+	fprint_tree(T,str1);
+
+	//func09(T);
+	func0901(T);
+
+	fprint_tree(T,str2);
+}
+
+void Testfunc10()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+	char str1[100] = "二叉树func1001.dot";
+	//char str2[100] = "二叉树func1002.dot";
+	fprint_tree(T, str1);
+
+	int k;
+	cout << "请输入结点在先序遍历序列的序号（从1开始）：" << endl;
+	cin >> k;
+	func10(T,k);
+	cout << "先序遍历：";
+	PreOrderTraverse(T, printelem);
 }

@@ -393,3 +393,107 @@ int func08(BiTree T)
 	
 		return 0;
 }
+
+bool func09(BiTree T)
+/*交换连式存储的二叉树中所有结点的左右子树*/
+{
+	BiTree s[100];
+	BiTree q[100];
+	int front = 0, rear = 0, top = 0;
+
+	if (T == NULL)
+		return false;
+
+	q[rear++] = T;
+	while (T != NULL && front < rear)
+	{
+		T = q[front++];
+		s[top++] = T;
+		if (T->lchild != NULL)
+			q[rear++] = T->lchild;
+		if (T->rchild != NULL)
+			q[rear++] = T->rchild;
+	}
+
+	while (top>0)
+	{
+		T = s[--top];
+		BiTree tmp=T->lchild;
+		T->lchild = T->rchild;
+		T->rchild = tmp;
+	}
+
+	return true;
+}
+
+bool func0901(BiTree T)
+/*交换连式存储的二叉树中所有结点的左右子树的递归实现*/
+{
+	if (T == NULL)
+		return false;
+
+	BiTree tmp = T->lchild;
+	T->lchild = T->rchild;
+	T->rchild = tmp;
+	if (T->lchild != NULL)
+		func0901(T->lchild);
+	if (T->rchild != NULL)
+		func0901(T->rchild);
+	return true;
+}
+
+bool func10(BiTree T,int k)
+/*返回二叉树以前序遍历序列中第k个结点的值*/
+{
+	BiTree s[100];
+	BiTree q[100];
+	int front = 0, rear = 0, top = 0;
+
+	q[rear++] = T;
+	s[top++] = T->rchild;
+	T = T->lchild;
+	while (T != NULL || top>0)
+	{
+		if (T == NULL)
+			T = s[--top];
+		q[rear++] = T;
+		if (rear == k)
+		{
+			cout << q[rear-1]->data << endl;
+			return true;
+		}
+		if (T->rchild)
+			s[top++] = T->rchild;
+		T = T->lchild;
+	}
+	cout << "未找到！" << endl;
+	return false;
+}
+
+bool func11(BiTree T,ElemType x)
+/*找到树里所有值为x的结点，并删除以该节点为根的子树，并释放相应的内存空间*/
+{
+	BiTree s[100];
+	BiTree sh[100];
+	BiTree q[100];
+	int front = 0, rear = 0, top = 0, toph = 0;
+	if (T == NULL)
+		return false;
+	if (T->data == x)
+	{
+		sh[toph++] = T;
+		if (T->rchild)
+			sh[toph++] = T->rchild;
+		T = T->lchild;
+		while (T != NULL || toph>0)
+		{
+			if (T == NULL)
+				T = sh[--toph];
+			if (T->rchild)
+				sh[toph++] = T->rchild;
+			T = T->lchild;
+		}
+		return true;
+	}
+	return true;
+}

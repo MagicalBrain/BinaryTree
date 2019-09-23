@@ -24,7 +24,9 @@ int main()
 	//Testfunc05();
 	//Testfunc06();
 	//Testfunc07();
-	Testfunc08();
+	//Testfunc08();
+	//Testfunc09();
+	Testfunc10();
 
 	return 0;
 }
