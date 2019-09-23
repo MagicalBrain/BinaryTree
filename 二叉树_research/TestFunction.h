@@ -8,6 +8,7 @@ void fprint_tree0(BiTree t, ofstream *Tree)
 {
 	if (t != NULL)
 	{
+		*Tree << t->data << ";"<<endl;
 		if (t->lchild != NULL)
 			*Tree << t->data << "->" << t->lchild->data << ";" << endl;
 		if (t->rchild != NULL)
@@ -380,6 +381,34 @@ void Testfunc10()
 	cout << "请输入结点在先序遍历序列的序号（从1开始）：" << endl;
 	cin >> k;
 	func10(T,k);
+	cout << "先序遍历：";
+	PreOrderTraverse(T, printelem);
+}
+
+void Testfunc11()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABD##E##B##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+	char str1[100] = "二叉树func1101.dot";
+	char str2[100] = "二叉树func1102.dot";
+	fprint_tree(T, str1);
+
+	ElemType k;
+	cout << "请输入要删除的结点的键值：" << endl;
+	cin >> k;
+	func11(T, k);
+	fprint_tree(T, str2);
 	cout << "先序遍历：";
 	PreOrderTraverse(T, printelem);
 }

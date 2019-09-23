@@ -427,7 +427,7 @@ bool func09(BiTree T)
 }
 
 bool func0901(BiTree T)
-/*交换连式存储的二叉树中所有结点的左右子树的递归实现*/
+/*交换链式存储的二叉树中所有结点的左右子树的递归实现*/
 {
 	if (T == NULL)
 		return false;
@@ -470,30 +470,55 @@ bool func10(BiTree T,int k)
 	return false;
 }
 
-bool func11(BiTree T,ElemType x)
+void Deletefunc11(BiTree T)
+{
+	if (T)
+	{
+		Deletefunc11(T->lchild);
+		Deletefunc11(T->rchild);
+		//T->lchild = NULL;
+		free(T);
+	}
+	//T = NULL;
+}
+
+bool func11(BiTree &T,ElemType x)
 /*找到树里所有值为x的结点，并删除以该节点为根的子树，并释放相应的内存空间*/
 {
 	BiTree s[100];
-	BiTree sh[100];
+	//BiTree sh[100];
 	BiTree q[100];
 	int front = 0, rear = 0, top = 0, toph = 0;
 	if (T == NULL)
 		return false;
-	if (T->data == x)
+	
+	q[rear++] = T;
+	//T = T->lchild;
+	while (T && rear>front)
 	{
-		sh[toph++] = T;
-		if (T->rchild)
-			sh[toph++] = T->rchild;
-		T = T->lchild;
-		while (T != NULL || toph>0)
+		T = q[front++];
+		
+		if (T->lchild != NULL)
 		{
-			if (T == NULL)
-				T = sh[--toph];
-			if (T->rchild)
-				sh[toph++] = T->rchild;
-			T = T->lchild;
+			if (T->lchild->data == x)
+			{
+				Deletefunc11(T->lchild);
+				T->lchild = NULL;
+			}
+			else
+				q[rear++] = T->lchild;
 		}
-		return true;
+		if (T->rchild != NULL)
+		{
+			if (T->rchild->data == x)
+			{
+				Deletefunc11(T->rchild);
+				T->rchild = NULL;
+			}
+			else
+				q[rear++] = T->rchild;
+		}
 	}
+
 	return true;
 }
