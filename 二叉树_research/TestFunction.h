@@ -10,9 +10,9 @@ void fprint_tree0(BiTree t, ofstream *Tree)
 	{
 		*Tree << t->data << ";"<<endl;
 		if (t->lchild != NULL)
-			*Tree << t->data << "->" << t->lchild->data << ";" << endl;
+			*Tree << t->data << "->" << t->lchild->data  << ";" << endl;
 		if (t->rchild != NULL)
-			*Tree << t->data << "->" << t->rchild->data << ";" << endl;
+			*Tree << t->data << "->" << t->rchild->data  << ";" << endl;
 
 		fprint_tree0(t->lchild,Tree);
 
@@ -400,8 +400,8 @@ void Testfunc11()
 	BiTree T;
 	InitBiTree(T);
 	T = CreatBiTree(def, i);
-	char str1[100] = "二叉树func1101.dot";
-	char str2[100] = "二叉树func1102.dot";
+	char str1[100] = "二叉树图片\\二叉树func1101.dot";
+	char str2[100] = "二叉树图片\\二叉树func1102.dot";
 	fprint_tree(T, str1);
 
 	ElemType k;
@@ -411,4 +411,31 @@ void Testfunc11()
 	fprint_tree(T, str2);
 	cout << "先序遍历：";
 	PreOrderTraverse(T, printelem);
+}
+
+void Testfunc12()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABD##E##B##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+	char str1[100] = "二叉树图片\\二叉树func12.dot";
+	fprint_tree(T, str1);
+
+	ElemType k;
+	cout << "请输入要寻找的结点的键值：" << endl;
+	cin >> k;
+	func12(T, k);
+	//fprint_tree(T, str2);
+	//cout << "先序遍历：";
+	//PreOrderTraverse(T, printelem);
 }

@@ -474,15 +474,17 @@ void Deletefunc11(BiTree T)
 {
 	if (T)
 	{
-		Deletefunc11(T->lchild);
-		Deletefunc11(T->rchild);
+		if (T->lchild)
+			Deletefunc11(T->lchild);
+		if (T->rchild)
+			Deletefunc11(T->rchild);
 		//T->lchild = NULL;
 		free(T);
 	}
 	//T = NULL;
 }
 
-bool func11(BiTree &T,ElemType x)
+bool func11(BiTree T,ElemType x)
 /*找到树里所有值为x的结点，并删除以该节点为根的子树，并释放相应的内存空间*/
 {
 	BiTree s[100];
@@ -491,8 +493,14 @@ bool func11(BiTree &T,ElemType x)
 	int front = 0, rear = 0, top = 0, toph = 0;
 	if (T == NULL)
 		return false;
-	
-	q[rear++] = T;
+	if (T->data == x)
+	{
+		Deletefunc11(T);
+		//T = NULL;
+		exit(0);
+	}
+	else
+		q[rear++] = T;
 	//T = T->lchild;
 	while (T && rear>front)
 	{
@@ -520,5 +528,49 @@ bool func11(BiTree &T,ElemType x)
 		}
 	}
 
+	return true;
+}
+
+bool func12(BiTree T, ElemType x)
+/*一次打印输出值为x的结点的所有祖先结点*/
+{
+	if (T == NULL)
+		return false;
+
+	BiTree s[100];
+	//BiTree q[100];
+	int  top = 0, front = 0, rear = 0;
+	BiTree r = NULL;
+	while (T || top > 0)
+	{
+		if (T)
+		{
+			s[top++] = T;
+			T = T->lchild;
+		}
+		else
+		{
+			T = s[top-1];			
+			if (T->rchild && T->rchild != r)
+			{
+				T = T->rchild;
+			}
+			else
+			{
+				T = s[--top];
+				if (T->data == x)
+					break;
+				
+				r = T;
+				T = NULL;//不重置为NULL的话会出不了栈，造成死循环
+			}
+			
+		}
+	}
+	for (int i = top-1; i >=0; i--)
+	{
+		cout << s[i]->data << ",";
+	}
+	cout << endl;
 	return true;
 }

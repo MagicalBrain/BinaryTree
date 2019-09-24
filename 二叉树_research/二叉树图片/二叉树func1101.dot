@@ -1,6 +1,14 @@
 digraph G{
 W;
+W->R;
 W->Y;
+R;
+R->K;
+K;
+K->G;
+K->L;
+G;
+L;
 Y;
 Y->X;
 Y->Z;
