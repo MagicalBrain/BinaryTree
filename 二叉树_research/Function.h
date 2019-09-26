@@ -574,3 +574,163 @@ bool func12(BiTree T, ElemType x)
 	cout << endl;
 	return true;
 }
+
+bool func13(BiTree T, ElemType x, ElemType y)
+/*找出结点x和y的最近公共祖先结点*/
+{
+	if (T == NULL)
+		return false;
+
+	BiTree s[100];
+	BiTree q[100];
+	int  top = 0, front = 0, rear = 0, flag = 0, topq = 0;
+	BiTree r = NULL;
+	while (T || top > 0)
+	{
+		if (T)
+		{
+			s[top++] = T;
+			T = T->lchild;
+		}
+		else
+		{
+			T = s[top - 1];
+			if (T->rchild && T->rchild != r)
+			{
+				T = T->rchild;
+			}
+			else
+			{
+				T = s[--top];
+				if (T->data == x || T->data == y)
+				{
+					if (flag)//第二次
+						break;
+					else//第一次，复制到辅助栈里去
+					{
+						topq = top;
+						for (int i = top-1; i >= 0; i--)
+							q[i] = s[i];
+					}
+					flag++;
+				}
+
+				r = T;
+				T = NULL;//不重置为NULL的话会出不了栈，造成死循环
+			}
+
+		}
+	}
+	while (top>0 && topq>0)
+	{
+		if (s[top-1]->data == q[topq-1]->data)
+		{
+			cout << "最近的公共祖先结点为：" << q[top-1]->data << endl;
+			return true;
+		}
+		else 
+		{
+			if (top > topq)
+				top--;
+			else
+				topq--;
+		}
+	}
+	cout << "无公共结点！" << endl;
+	return false;
+}
+
+int func14(BiTree T)
+/*利用层次遍历来求树的宽度（结点数最多那层的结点数）*/
+{
+	BiTree q[100];
+	int front = -1, rear = 0;
+
+	q[rear++] = T;
+	int re = 1, num = 0, last = 0;
+	while (T != NULL && rear-1 > front)
+	{
+		T = q[++front];
+		
+		cout << T->data << ",";
+		num++;
+		if (T->lchild)
+			q[rear++] = T->lchild;
+		if (T->rchild)
+			q[rear++] = T->rchild;
+		if (last == front)
+		{
+			if (num > re)
+				re = num;
+			last = rear-1;
+			num = 0;
+		}
+	}
+	cout << endl;
+	return re;
+}
+
+void func15(char pre[],int s1,int e1,char post[],int s2,int e2)
+/*
+* 已知一棵满二叉树，根据已有的先序遍历序列来生成后序遍历序列post
+* 用递归来实现比较简单
+*/
+{
+	if (e1 >= s1)
+	{
+		post[e2] = pre[s1];
+		int half = (e1 - s1) / 2;
+		func15(pre, s1 + 1, s1 + half, post, s2, s2 + half - 1);
+		func15(pre, s1 + half + 1, e1, post, s2 + half, e2 - 1);
+	}
+}
+
+void func16(BiTree T,BiTree head)
+/*
+* 将二叉树的叶子结点按从左到右输出，
+* 且结点的右子作为next指针指向下一个结点*/
+{
+	BiTree s[100];
+	BiTree q[100];
+	BiTree p = NULL;
+	p = head;
+	head->rchild = NULL;
+	int top = 0, num = 0;
+
+	while (T || top>0)
+	{
+		if (T == NULL)
+			T = s[--top];
+		else
+		{
+			cout << T->data << ",";
+			if (T->rchild)
+				s[top++] = T->rchild;
+			if (T->lchild == NULL && T->rchild == NULL)
+			{
+				BiTree t = (BiTree)malloc(sizeof(BiTNode));
+				t->data = T->data;
+				t->rchild = NULL;
+				p->rchild = t;
+				p = p->rchild;
+			}
+			T = T->lchild;
+		}
+	}
+	cout << endl;
+}
+
+bool func17(BiTree T1, BiTree T2)
+/*利用递归思想来判断两棵树是否为相似的*/
+{
+	bool r1, r2;
+	if (T1 == NULL && T2 == NULL)
+		return true;
+	else if (T1 && T2)
+	{
+		func17(T1->lchild, T2->lchild);
+		func17(T1->rchild, T2->rchild);
+	}
+	else return false;
+	//return false;
+}

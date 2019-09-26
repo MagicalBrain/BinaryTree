@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/*
+一下是从CMD调用graphviz来进行二叉树可视化的操作：
+dot -Tpng 二叉树.dot -o 二叉树.png
+*/
 void fprint_tree0(BiTree t, ofstream *Tree)
 {
 	if (t != NULL)
@@ -438,4 +442,146 @@ void Testfunc12()
 	//fprint_tree(T, str2);
 	//cout << "先序遍历：";
 	//PreOrderTraverse(T, printelem);
+}
+
+void Testfunc13()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABD##E##B##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+	char str1[100] = "二叉树图片\\二叉树func13.dot";
+	fprint_tree(T, str1);
+
+	ElemType x,y;
+	cout << "请输入要x，y结点的键值：" << endl;
+	cin >> x >> y;
+	func13(T, x, y);
+	//fprint_tree(T, str2);
+	//cout << "先序遍历：";
+	//PreOrderTraverse(T, printelem);
+}
+
+void Testfunc14()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	char* def = "ABD##E##F##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+	char str1[100] = "二叉树图片\\二叉树func14.dot";
+	fprint_tree(T, str1);
+
+	cout << "树的宽度为：" << func14(T) << endl;
+	//fprint_tree(T, str2);
+	//cout << "先序遍历：";
+	//PreOrderTraverse(T, printelem);
+}
+
+void Testfunc15()
+{
+	//char* def = "ABDECFG";
+	char* def = "ABD##E##CF##G##";
+	char pre[]="ABDECFG";
+	char post[100];
+	int i = 0, num = 0, len = 6;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+	char str1[100] = "二叉树图片\\二叉树func15.dot";
+	fprint_tree(T, str1);
+
+	func15(pre, 0, len, post, 0, len);
+	for (int i = 0; i <= len; i++)
+	{
+		cout << post[i] << ",";
+	}
+	cout << endl;
+	//fprint_tree(T, str2);
+	//cout << "先序遍历：";
+	//PreOrderTraverse(T, printelem);
+}
+
+void Testfunc16()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABD##E##F##";
+	char* def = "AB##CD##E##";
+
+	int i = 0, num = 0;
+	BiTree T,head,p;
+	InitBiTree(T);
+	InitBiTree(head);
+	T = CreatBiTree(def, i);
+	char str1[100] = "二叉树图片\\二叉树func16.dot";
+	fprint_tree(T, str1);
+
+	func16(T,head);
+	//fprint_tree(T, str2);
+	p = head->rchild;
+	while (p)
+	{
+		cout << p->data << ",";
+		p = p->rchild;
+	}
+	cout << endl;
+	cout << "先序遍历：";
+	PreOrderTraverse(T, printelem);
+}
+
+void Testfunc17()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	char* def = "ABD##E##F##";
+	char* def0 = "AB##CD##E##";
+	//char* def0 = "WRK##A##E##";
+
+	int i = 0, num = 0;
+	BiTree T, T0;
+	InitBiTree(T);
+	InitBiTree(T0);
+	T = CreatBiTree(def, i);
+	T0 = CreatBiTree(def0, num);
+	//T = T0 = NULL;
+	char str1[100] = "二叉树图片\\二叉树func1701.dot";
+	char str2[100] = "二叉树图片\\二叉树func1702.dot";
+	fprint_tree(T, str1);
+	fprint_tree(T0, str2);
+
+	if (func17(T, T0))
+	{
+		cout << "两棵树是相似的！" << endl;
+	}
+	else
+		cout << "两棵树不是相似的!" << endl;
+	//fprint_tree(T, str2);
 }

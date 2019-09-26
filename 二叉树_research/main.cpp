@@ -28,7 +28,12 @@ int main()
 	//Testfunc09();
 	//Testfunc10();
 	//Testfunc11();
-	Testfunc12();
+	//Testfunc12();
+	//Testfunc13();
+	//Testfunc14();
+	//Testfunc15();
+	//Testfunc16();
+	Testfunc17();
 
 	return 0;
 }
