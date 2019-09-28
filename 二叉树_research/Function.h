@@ -734,3 +734,31 @@ bool func17(BiTree T1, BiTree T2)
 	else return false;
 	//return false;
 }
+
+int func19(BiTree root)
+/*求T的WPL：带权路径长度*/
+{
+	int sum = 0;
+	BiTree s[100];
+	int top = 0;
+	while (root || top > 0)
+	{
+		if (root)
+		{
+			s[top++] = root;
+			sum += root->data;
+			root = root->lchild;
+		}
+		else
+		{
+			int t = 0;
+			root = s[--top]->rchild;
+			if (root)
+			for (int i = 0; i <= top; i++)
+				t += s[i]->data;
+			sum += t;
+		}
+		
+	}
+	return sum;
+}

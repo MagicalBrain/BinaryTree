@@ -15,7 +15,7 @@ using namespace std;
 
 typedef int Status;
 
-#define TElemType char
+#define TElemType int
 
 typedef struct BiTNode
 {
@@ -70,6 +70,27 @@ BiTree CreatBiTree(char *defBT, int &i)
 		T = MakeBiTree(ch, NULL, NULL);
 		T->lchild = CreatBiTree(defBT, i);
 		T->rchild = CreatBiTree(defBT, i);
+
+	}
+	return T;
+}
+
+BiTree CreatBiTree(int* defBT, int& i,int num)
+//用先序遍历来构造二叉树，defBT为描述序列,i为defBT的位标
+{
+	BiTree T;
+	TElemType ch;
+	if (i >= num)
+		return NULL;
+	ch = defBT[i++];
+	if (0 == ch)
+		//InitBiTree(T);  
+		T = NULL;//空树
+	else
+	{
+		T = MakeBiTree(ch, NULL, NULL);
+		T->lchild = CreatBiTree(defBT, i, num);
+		T->rchild = CreatBiTree(defBT, i, num);
 
 	}
 	return T;

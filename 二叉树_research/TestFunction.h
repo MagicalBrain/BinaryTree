@@ -585,3 +585,26 @@ void Testfunc17()
 		cout << "两棵树不是相似的!" << endl;
 	//fprint_tree(T, str2);
 }
+
+void Testfunc19()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	int def[] = {1,2,3,0,0,4,0,0,5,0,0};//"ABD##E##F##";
+	
+
+	int i = 0, num = 11;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i,num);
+	//T = T0 = NULL;
+	char str1[100] = "二叉树图片\\二叉树func19.dot";
+	fprint_tree(T, str1);
+	
+	cout << func19(T) << endl;
+}
