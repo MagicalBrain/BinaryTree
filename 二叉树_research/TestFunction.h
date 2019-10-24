@@ -37,7 +37,18 @@ void fprint_tree(BiTree t) {
 	//if (rb_nil == t) return;	
 }
 
-void fprint_tree(BiTree t,char str[]) {
+void fprint_tree00( char str[]) {
+	ifstream Tree;
+	char s[100];
+	Tree.open(str);
+	if (!Tree.is_open())
+		cout << "打开文件失败！" << endl;
+	Tree >> s ;
+	puts(s);
+	Tree.close();
+}
+
+void fprint_tree(BiTree t, char str[]) {
 	ofstream Tree;
 	Tree.open(str);
 	Tree << "digraph G{" << endl;

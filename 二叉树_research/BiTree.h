@@ -77,6 +77,7 @@ BiTree CreatBiTree(char *defBT, int &i)
 
 BiTree CreatBiTree(int* defBT, int& i,int num)
 //用先序遍历来构造二叉树，defBT为描述序列,i为defBT的位标
+//先序遍历序列为int数组时调用该函数
 {
 	BiTree T;
 	TElemType ch;

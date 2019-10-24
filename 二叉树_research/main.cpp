@@ -1,9 +1,10 @@
 #include <iostream>
-#include "BiTree.h"
+//#include "BiTree.h"
 #include "Stack.h"
 #include "BinaryTree.h"
 #include "Function.h"
 #include "TestFunction.h"
+#include "TestInOrderCal.h"
 
 using namespace std;
 
@@ -34,7 +35,10 @@ int main()
 	//Testfunc15();
 	//Testfunc16();
 	//Testfunc17();
-	Testfunc19();
+	//Testfunc19();
+	//TestInOrderCal();
+	char str1[100] = "func2.txt";
+	fprint_tree00(str1);
 
 	return 0;
 }

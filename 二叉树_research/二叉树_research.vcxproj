@@ -87,8 +87,9 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,10 +153,12 @@
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BiTree.h" />
     <ClInclude Include="Function.h" />
+    <ClInclude Include="InorderCal.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Sequence.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="TestFunction.h" />
+    <ClInclude Include="TestInOrderCal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

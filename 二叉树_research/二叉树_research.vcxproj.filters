@@ -41,5 +41,11 @@
     <ClInclude Include="Queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InorderCal.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestInOrderCal.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
