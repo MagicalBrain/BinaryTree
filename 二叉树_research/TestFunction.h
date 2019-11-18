@@ -619,3 +619,140 @@ void Testfunc19()
 	
 	cout << func19(T) << endl;
 }
+
+
+/*---------------4.5 二叉树的应用 ---------------*/
+
+
+
+void Testfunc4506()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABDECFG";
+	char* def = "532##4##86##9##";
+	
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+
+	char str[100] = "二叉树图片\\二叉树func4506.dot";
+	fprint_tree(T, str);
+
+	if (func4506(T))
+		puts("是二叉排序树！");
+	else
+		puts("不是二叉排序树！");
+}
+
+
+void Testfunc4507()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABDECFG";
+	char* def = "532##4##86##9##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+
+	char str[100] = "二叉树图片\\func4507.dot";
+	fprint_tree(T, str);
+
+	TElemType x;
+	puts("输入结点的值");
+	scanf("%c", &x);
+	printf("值为%d\n", x);
+	printf("层次为%d\n",func4507(T,x));
+}
+
+
+void Testfunc4508()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABDECFG";
+	char* def = "532##4##86##9##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+
+	char str[100] = "二叉树图片\\func4507.dot";
+	fprint_tree(T, str);
+
+	TElemType x;
+	puts("输入结点的值");
+	scanf("%c", &x);
+	printf("值为%d\n", x);
+	printf("层次为%d\n", func4507(T, x));
+}
+
+
+void Testfunc4509()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABDECFG";
+	char* def = "532##4##86##9##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+
+	char str[100] = "二叉树图片\\func4509.dot";
+	fprint_tree(T, str);
+
+	func4509(T);
+}
+
+
+void Testfunc4510()
+{
+	//char* def = "MJG####";
+	//char* def = "A#B#CD###";
+	//char* def = "ABD##E##C##";
+	//char* def = "CG#J#T#V###";
+	//char* def = "C#GJTV#####";
+	//char* def = "WRKG##L###YX##Z##";
+	//char* def = "WRK##X##YG##L##";
+	//char* def = "ABDECFG";
+	char* def = "532##4##86##9##";
+
+	int i = 0, num = 0;
+	BiTree T;
+	InitBiTree(T);
+	T = CreatBiTree(def, i);
+
+	char str[100] = "二叉树图片\\func4510.dot";
+	fprint_tree(T, str);
+
+	TElemType x;
+	scanf("%c", &x);
+	func4510(T, x);
+}

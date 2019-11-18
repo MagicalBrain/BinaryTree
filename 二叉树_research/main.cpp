@@ -37,8 +37,14 @@ int main()
 	//Testfunc17();
 	//Testfunc19();
 	//TestInOrderCal();
-	char str1[100] = "func2.txt";
-	fprint_tree00(str1);
+	
+	//char str1[100] = "func2.txt";
+	//fprint_tree00(str1);
 
+	//Testfunc4506();
+	//Testfunc4507();
+
+	//Testfunc4509();
+	Testfunc4510();
 	return 0;
 }

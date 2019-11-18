@@ -32,7 +32,7 @@ void InitBTree(BTree &T)
 }
 
 
-BTree MakeBiTree(ElemType e, BTree L, BTree R)
+BTree MakeBiTree0(ElemType e, BTree L, BTree R)
 {
 	BTree p = (BTree)malloc(sizeof(BNode));
 	if (NULL == p)
@@ -57,7 +57,7 @@ BTree CreatBTree(char* defBT, int& i)
 		T = NULL;//¿ÕÊ÷
 	else
 	{
-		T = MakeBiTree(ch, NULL, NULL);
+		T = MakeBiTree0(ch, NULL, NULL);
 		T->lchild = CreatBTree(defBT, i);
 		T->rchild = CreatBTree(defBT, i);
 

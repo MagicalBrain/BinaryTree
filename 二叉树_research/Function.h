@@ -730,6 +730,7 @@ bool func17(BiTree T1, BiTree T2)
 	{
 		func17(T1->lchild, T2->lchild);
 		func17(T1->rchild, T2->rchild);
+		return true;	//后来修改的还没测试对不对
 	}
 	else return false;
 	//return false;
@@ -761,4 +762,180 @@ int func19(BiTree root)
 		
 	}
 	return sum;
+}
+
+/*---------------4.5 二叉树的应用 ---------------*/
+
+/*
+* 6、试编写一个算法，判断给定的二叉树是否是二叉排序树
+* 实际上使用中序非递归遍历出来的序列是否有序来判断
+*/
+
+bool func4506(BiTree T)
+{
+	BiTree z[100];
+	int top = 0;
+	BiTree q[100];
+	int i = 0;
+
+	BiTree p = T;
+
+	while (p!= NULL || top>0)
+	{
+		if (p)
+		{
+			z[top++] = p;
+			p = p->lchild;
+		}
+		else
+		{
+			p = z[--top];
+			//printf("%c ", p->data);
+			q[i++] = p;
+			p = p->rchild;
+		}
+	}
+
+	for (int j = 0; j < i-1; j++)
+	{
+		if (q[j]->data > q[j + 1]->data)
+			return false;
+	}
+
+	return true;
+}
+
+
+/*
+* 7、设计一个算法，求出指定结点在给定二叉排序树中的层次
+* 
+*/
+
+int func4507(BiTree T, TElemType x)
+{
+	if (T)
+	{
+		if (T->data == x)
+			return 1;
+		else if (T->data > x)
+		{
+			return func4507(T->lchild, x) + 1;
+		}
+		else if(T->data < x)
+			return func4507(T->rchild, x) + 1;
+	}
+	else
+		return 0;
+}
+
+
+/*
+* 8、利用二叉树遍历的思想编写一个判断二叉树是否是平衡二叉树的算法。
+*
+*/
+
+
+bool func4508(BiTree T)
+{
+	return false;
+}
+
+/*
+* 9、设计一个算法，求出给定二叉排序树中最小和最大的关键字。
+*
+*/
+
+void func4509(BiTree T)
+{
+	TElemType min, max;
+	BiTree p1, p2, q1, q2;
+
+	p1 = T->lchild;
+	p2 = T;
+
+	while (p1 != NULL)
+	{
+		p1 = p1->lchild;
+		p2 = p2->lchild;
+	}
+	printf("最小值：%c", p2->data);
+
+	p1 = T->rchild;
+	p2 = T;
+
+	while (p1 != NULL)
+	{
+		p1 = p1->rchild;
+		p2 = p2->rchild;
+	}
+	printf("最大值：%c", p2->data);
+}
+
+
+/*
+* 10、设计一个算法，从大到小输出二叉排序树中所有值不小于k的关键字。
+*
+*/
+
+void func4510(BiTree T,TElemType x)
+{
+	if (T == NULL)
+		return;
+
+	BiTree p = T;
+	BiTree z[100];
+	int top = 0;
+
+	BiTree q[100];
+	int j = 0;
+
+	while (p != NULL || top > 0)
+	{
+		if (p)
+		{
+			z[top++] = p;
+			p = p->lchild;
+		}
+		else
+		{
+			p = z[--top];
+			q[j++] = p;
+			p = p->rchild;
+		}
+	}
+
+	for (int i = j-1; i >= 0; i--)
+	{
+		if (q[i]->data >= x)
+			printf("%c ", q[i]->data);
+	}
+	printf("\n");
+}
+
+/*
+* 11、设给定权集w=｛5，7，2，3，6，8，9｝，试构造关于w的一棵哈夫曼树，并求其加权路径长度WPL
+*
+*/
+
+/*
+* 12、编写一个递归算法，在一棵有n个结点的,
+* 随机建立起来的二叉排序树上查找第k（1≤k≤n）小的元素，
+* 并返回指向该结点的指针。要求算法的平均时间复杂度为O（log2n）。
+* 二叉排序树的每个结点中除data、 1child、 rchild等数据成员外，
+* 增加一个 count成员，保存以该结点为根的子树上的结点个数。
+*/
+
+BiTree func4512(BiTree T,int n,int k)
+{
+	if (T == NULL || k<0 || k>n||n<0)
+		return NULL;
+	BiTree re = NULL;
+	int i = 0;
+
+	BiTree p = T;
+	while (p != NULL)
+	{
+
+	}
+	return re;
 }

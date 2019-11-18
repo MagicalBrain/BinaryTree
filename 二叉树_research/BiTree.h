@@ -15,11 +15,12 @@ using namespace std;
 
 typedef int Status;
 
-#define TElemType int
+#define TElemType char
 
 typedef struct BiTNode
 {
 	TElemType data;
+	int count;
 	struct BiTNode *lchild, *rchild;
 } BiTNode, *BiTree;
 
