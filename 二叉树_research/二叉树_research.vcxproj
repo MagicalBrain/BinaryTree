@@ -154,6 +154,7 @@
     <ClInclude Include="BiTree.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="InorderCal.h" />
+    <ClInclude Include="ListBiTree.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Sequence.h" />
     <ClInclude Include="Stack.h" />

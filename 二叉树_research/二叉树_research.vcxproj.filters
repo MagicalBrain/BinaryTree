@@ -47,5 +47,8 @@
     <ClInclude Include="TestInOrderCal.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ListBiTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

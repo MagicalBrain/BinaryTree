@@ -5,12 +5,14 @@
 #include "Function.h"
 #include "TestFunction.h"
 #include "TestInOrderCal.h"
+#include "ListBiTree.h"
 
 using namespace std;
 
 
 
-int main()
+//int main()
+int main_Before()
 {
 	//TestCreatBiTree();
 	//TestBinaryTree();
@@ -46,5 +48,17 @@ int main()
 
 	//Testfunc4509();
 	Testfunc4510();
+	return 0;
+}
+
+int main()
+{
+	char str[100] = "123#4#5##6#";
+	LBiTree T;
+	T = Create_LinkBiTree(str);
+	Print_LBiTree_Elem(T);
+
+	char name[100] = "test_LBiTree.dot";
+	fprint_LBiTree(T, name);
 	return 0;
 }
